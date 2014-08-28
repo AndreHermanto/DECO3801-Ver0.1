@@ -1,12 +1,14 @@
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-	    <style type="text/css">
+	<?php
+	session_start();
+	?>
+    <style type="text/css">
       html { height: 100% }
       body { height: 100%; margin: 0; padding: 0 }
-      #map { height: 100% ; margin: top; padding: 0 }
+      #map { height: 82% }
     </style>
 	<!--<script type="text/javascript" src="js/javascript.js"></script>-->
 	<script src="js/jquery-1.10.2.js"></script>
@@ -23,12 +25,11 @@
 	 function init() {
 	      var apiKey = "1md9UwiFfywVXX8iPH5x4srBHQ9XwXFA3LO3wEDAT";
 		  
-	   // Basic options for a simple Google Map
-	   // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-	   var mapOptions = {
+	     var mapOptions = {
 		   // How zoomed in you want the map to start at (always required)
 		   zoom: 5,
 							   minZoom: 5,
+							   maxZoom: 10,
 							   // Turns off/on the zoom controls. Positioned at bottom-right.
 							   zoomControl: true,
 							   zoomControlOptions: {
@@ -59,8 +60,8 @@
 	   var map = new google.maps.Map(mapElement, mapOptions);
 	   
 		var strictBounds = new google.maps.LatLngBounds( 
-		new google.maps.LatLng(-40.739861, 115.205078), 
-   	    new google.maps.LatLng(-15.449624, 150.048828) 
+		new google.maps.LatLng(-45.739861, 110.205078), 
+   	    new google.maps.LatLng(-10.449624, 155.048828) 
      
    );
 
@@ -85,25 +86,50 @@
 
      map.setCenter(new google.maps.LatLng(y, x));
    });
+   
+      google.maps.event.addListener(map, 'zoom_changed', function() {
+     if (map.getZoom() < minZoomLevel) map.setZoom(minZoomLevel);
+   });
 	   
 	   
 	  // Hardcode variables for testing purposes
 	   var gender = "";
-	   var age = "";
-	   var nationality = "";
-	   var flag = ''; //takes the flag from session
-		var education ="";
-		var language="";
-		var religion="";
+	   var age = "Persons_Percentage_Age_15_24_years";
+	   var nationality = "Persons_Australia_Percentage";
+	   var flag = '<?=$_SESSION['flag']?>'; //takes the flag from session
+		var education ="Highest_year_of_school_completed_Did_not_go_to_school";
+		var language="Language_spoken_at_home_English_only";
+		var religion="Christianity";
+		var salary="Total_Eight_Thousand";
+		var employment="Employed_worked_Full_time_Total_Percentage";
+		var children = "Total_Number_of_children_ever_born_No_children";
 	   
-	   		if(flag == "go")
+	   <?php 
+		if(isset($_SESSION['gender'])) 
+		{	//takes the values from session
+			$gender = $_SESSION['gender'];
+			$age = $_SESSION['ageRange'];
+			$nationality = $_SESSION['nationality'];
+			$education = $_SESSION['education'];
+			$language = $_SESSION['language'];
+			$religion = $_SESSION['religion'];
+			$salary= $_SESSION['salary'];
+			$employment = $_SESSION['employment'];
+			$children = $_SESSION['children'];
+			
+		}
+		?>
+		if(flag == "go")
 		{	//put the values from the session to javascript variables
-			gender = ''; 
-			age = '';
-			nationality = '';
-			education = '';
-			language = '';
-			religion = '';
+			gender = '<?=$gender;?>'; 
+			age = '<?=$age;?>';
+			nationality = '<?=$nationality;?>';
+			education = '<?=$education;?>';
+			language = '<?=$language;?>';
+			religion = '<?=$religion;?>';
+			salary = '<?=$salary;?>';
+			employment = '<?=$employment;?>';
+			children = '<?=$children;?>';
 		}
 	   // Create Google Fusion Table layer
 
@@ -121,66 +147,28 @@
 				  strokeWeight: 0.01
 			   }
 			}, {
-			   where: gender + " > 0.45 AND " + age + "  > 0.08 AND " + nationality + " > 0.003 AND " +education + " < 0.015 AND " + language + " > 0.05 AND " + religion + " > 0.01",
-			   polygonOptions: {
-				  fillColor: "#eecec8"
-			   }
-			}, {
-			   where: gender + " > 0.47 AND " + age + "  > 0.132 AND " + nationality + " > 0.0227 AND " +education + " < 0.0095 AND " + language + " > 0.1 AND " + religion + " > 0.05",
+			   where: gender + " > 0.40 AND " + age + " > 0.08 AND " + nationality + " > 0.003 AND " + education + " < 0.0015 AND " + language + " > 0.05 AND " + religion + " > 0.01  AND " + salary + " > 0.01 AND " + children + " > 0.01 AND " + employment + " > 0.01",
 			   polygonOptions: {
 				  fillColor: "#e9c0b9"
 			   }
-			}, {
-			   where: gender + " > 0.49 AND " + age + "  > 0.184 AND " + nationality + " > 0.0424 AND " +education + " < 0.00085 AND " + language + " > 0.2 AND " + religion + " > 0.09",
-			   polygonOptions: {
-				  fillColor: "#e4b3aa"
+			},{
+				  where: gender + " > 0.42 AND " + age + "  > 0.132 AND " + nationality + " > 0.0227 AND " +education + " < 0.0095 AND " + language + " > 0.1 AND " + religion + " > 0.05 AND " + salary + " > 0.05 AND " + children + " > 0.05 AND " + employment + " > 0.05",
+			    polygonOptions: {
+					  fillColor: "#EB13DD"
+				   }
+				},
+				{
+			   where: gender + " > 0.46 AND " + age + "  > 0.236 AND " + nationality + " > 0.0621 AND " +education + " < 0.0075 AND " + language + " > 0.25 AND " + religion + " > 0.14 AND " + salary + " > 0.15 AND " + children + " > 0.1 AND " + employment + " > 0.1",
+			  polygonOptions: {
+				  fillColor: "#13EAE6"
 			   }
-			}, {
-			   where: gender + " > 0.51 AND " + age + "  > 0.236 AND " + nationality + " > 0.0621 AND " +education + " < 0.0075 AND " + language + " > 0.25 AND " + religion + " > 0.14",
-			   polygonOptions: {
-				  fillColor: "#e0a59c"
-			   }
-			}, {
-			   where: gender + " > 0.53 AND " + age + "  > 0.288 AND " + nationality + " > 0.0818 AND " +education + " < 0.0065 AND " + language + " > 0.3 AND " + religion + " > 0.19",
-			   polygonOptions: {
-				  fillColor: "#db988d"
-			   }
-			}, {
-			   where: gender + " > 0.55 AND " + age + "  > 0.34 AND " + nationality + " > 0.1015 AND " +education + " < 0.0055 AND " + language + " > 0.4 AND " + religion + " > 0.24",
-			   polygonOptions: {
-				  fillColor: "#d68a7e"
-			   }
-			}, {
-			   where: gender + " > 0.57 AND " + age + "  > 0.392 AND " + nationality + " > 0.1212 AND " +education + " < 0.0045 AND " + language + " > 0.5 AND " + religion + " > 0.29",
-			   polygonOptions: {
-				  fillColor: "#d17d6f"
-			   }
-			}, {
-			   where: gender + " > 0.59 AND " + age + "  > 0.444 AND " + nationality + " > 0.1409 AND " +education + " < 0.0035 AND " + language + " > 0.6 AND " + religion + " > 0.34",
-			   polygonOptions: {
-				  fillColor: "#cd6f60"
-			   }
-			}, {
-			   where: gender + " > 0.61 AND " + age + "  > 0.496 AND " + nationality + " > 0.1606 AND " +education + " < 0.0025 AND " + language + " > 0.7 AND " + religion + " > 0.39",
-			   polygonOptions: {
-				  fillColor: "#c86251"
-			   }
-			}, {
-			   where: gender + " > 0.63 AND " + age + "  > 0.548 AND " + nationality + " > 0.1803 AND " +education + " < 0.0015 AND " + language + " > 0.8 AND " + religion + " > 0.44",
-			   polygonOptions: {
-				  fillColor: "#c35542"
-			   }
-			}, {
-			   where: gender + " > 0.65 AND " + age + "  > 0.6 AND " + nationality + " > 0.2 AND " +education + " < 0.001 AND " + language + " > 0.9 AND " + religion + " > 0.49",
-			   polygonOptions: {
-				  fillColor: "#b34b39"
-			   }
-			}]
+			}
+			]
 	  });
-
-
+	  
 
 	   layer.setMap(map);
+	   
 	   
       } // belongs to init()
 		
@@ -215,7 +203,10 @@
 		  ['education', 80]
         ]);
 
-        
+        // Set chart options
+        var options = {'title':'National Statistics Based On Your Preferences',
+                       'width':400,
+                       'height':300};
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
@@ -278,43 +269,43 @@
     			</div>
     			<form action="setSession.php" method="post">
     				<p class="form-title">Gender</p>
-    				<input type="radio" name="gender" value="Males_Total_Percentage" >Male</input>
-    				<input type="radio" name="gender" value="Females_Total_Percentage">Female</input>
+    				<input type="radio" name="gender" value="Males_Total_Percentage" <?php echo ($gender == "Males_Total_Percentage" ? "checked" : "") ;?>>Male</input>
+    				<input type="radio" name="gender" value="Females_Total_Percentage"<?php echo ($gender == "Females_Total_Percentage" ? "checked" : "" ) ;?>>Female</input>
     				<p class="form-title">Age</p>
     				<select name="ageRange">
-						<option value="Persons_Percentage_Age_15_24_years"  >15-24 years</option>
-    					<option value="Persons_Percentage_Age_25_44_years"  >25-44 years</option>
-    					<option value="Persons_Percentage_Age_45_54_years"  >45-54 years</option>
-    					<option value="Persons_Percentage_Age_55_64_years"  >55-64 years</option>
+						<option value="Persons_Percentage_Age_15_24_years" <?php echo ($age == "Persons_Percentage_Age_15_24_years" ? "selected" : "") ;?> >15-24 years</option>
+    					<option value="Persons_Percentage_Age_25_44_years" <?php echo ($age == "Persons_Percentage_Age_25_44_years" ? "selected" : "") ;?> >25-44 years</option>
+    					<option value="Persons_Percentage_Age_45_54_years" <?php echo ($age == "Persons_Percentage_Age_45_54_years" ? "selected" : "") ;?> >45-54 years</option>
+    					<option value="Persons_Percentage_Age_55_64_years" <?php echo ($age == "Persons_Percentage_Age_55_64_years" ? "selected" : "") ;?> >55-64 years</option>
     				</select>
     				<p class="form-title">Nationality</p>
 					<select name="nationality" id="natForm">
 						<option value="">-- select one --</option>
-					  <option value="Persons_Australia_Percentage"  >Australia</option>
-					  <option value="Persons_China_excludes_SARs_and_Taiwan_Percentage" >China excludes SARs &amp; Taiwan</option>
-					  <option value="Persons_Croatia_Percentage" >Croatia</option>
-					  <option value="Persons_England_Percentage" >England</option>
-					  <option value="Persons_Fiji_Percentage" >Fiji</option>
-					  <option value="Persons_Germany_Percentage" >Germany</option>
-					  <option value="Persons_Greece_Percentage" >Greece</option>
-					  <option value="Persons_Hong_Kong_SAR_of_China_Percentage" >Hong Kong SAR of China</option>
-					  <option value="Persons_India_Percentage" >India</option>
-					  <option value="Persons_Indonesia_Percentage" >Indonesia</option>
-					  <option value="Persons_Iraq_Percentage" >Iraq</option>
-					  <option value="Persons_Ireland_Percentage" >Ireland</option>
-					  <option value="Persons_Italy_Percentage" >Italy</option>
-					  <option value="Persons_Korea_Republic_of_South_Percentage" >Korea Republic of Souuth</option>
-					  <option value="Persons_Lebanon_Percentage" >Lebanon</option>
-					  <option value="Persons_Malaysia_Percentage" >Malaysia</option>>
-					  <option value="Persons_Netherlands_Percentage" >Netherlands</option>
-					  <option value="Persons_New_Zealand_Percentage" >New Zealand</option>
-					  <option value="Persons_Philippines_Percentage" >Philippines</option>
-					  <option value="Persons_Scotland_Percentage" >Scotland</option>
-					  <option value="Persons_Singapore_Percentage" >Singapore</option>
-					  <option value="Persons_South_Africa_Percentage" >South Africa</option>
-					  <option value="Persons_Sri_Lanka_Percentage" >Sri Lanka</option>  
-					  <option value="Persons_United_States_of_America_Percentage" >United States of America</option>
-					  <option value="Persons_Vietnam_Percentage" >Vietnam</option>
+					  <option value="Persons_Australia_Percentage" <?php echo ($nationality == "Persons_Australia_Percentage" ? "selected" : "") ;?> >Australia</option>
+					  <option value="Persons_China_excludes_SARs_and_Taiwan_Percentage" <?php echo ($nationality == "Persons_China_excludes_SARs_and_Taiwan_Percentage" ? "selected" : "") ;?>>China excludes SARs &amp; Taiwan</option>
+					  <option value="Persons_Croatia_Percentage" <?php echo ($nationality == "Persons_Croatia_Percentage" ? "selected" : "") ;?>>Croatia</option>
+					  <option value="Persons_England_Percentage" <?php echo ($nationality == "Persons_England_Percentage" ? "selected" : "") ;?>>England</option>
+					  <option value="Persons_Fiji_Percentage" <?php echo ($nationality == "Persons_Fiji_Percentage" ? "selected" : "") ;?>>Fiji</option>
+					  <option value="Persons_Germany_Percentage" <?php echo ($nationality == "Persons_Germany_Percentage" ? "selected" : "") ;?>>Germany</option>
+					  <option value="Persons_Greece_Percentage" <?php echo ($nationality == "Persons_Greece_Percentage" ? "selected" : "") ;?>>Greece</option>
+					  <option value="Persons_Hong_Kong_SAR_of_China_Percentage" <?php echo ($nationality == "Persons_Hong_Kong_SAR_of_China_Percentage" ? "selected" : "") ;?>>Hong Kong SAR of China</option>
+					  <option value="Persons_India_Percentage" <?php echo ($nationality == "Persons_India_Percentage" ? "selected" : "") ;?>>India</option>
+					  <option value="Persons_Indonesia_Percentage" <?php echo ($nationality == "Persons_Indonesia_Percentage" ? "selected" : "") ;?>>Indonesia</option>
+					  <option value="Persons_Iraq_Percentage" <?php echo ($nationality == "Persons_Iraq_Percentage" ? "selected" : "") ;?>>Iraq</option>
+					  <option value="Persons_Ireland_Percentage" <?php echo ($nationality == "Persons_Ireland_Percentage" ? "selected" : "") ;?>>Ireland</option>
+					  <option value="Persons_Italy_Percentage" <?php echo ($nationality == "Persons_Italy_Percentage" ? "selected" : "") ;?>>Italy</option>
+					  <option value="Persons_Korea_Republic_of_South_Percentage" <?php echo ($nationality == "Persons_Korea_Republic_of_South_Percentage" ? "selected" : "") ;?>>Korea Republic of Souuth</option>
+					  <option value="Persons_Lebanon_Percentage" <?php echo ($nationality == "Persons_Lebanon_Percentage" ? "selected" : "") ;?>>Lebanon</option>
+					  <option value="Persons_Malaysia_Percentage" <?php echo ($nationality == "Persons_Malaysia_Percentage" ? "selected" : "") ;?>>Malaysia</option>>
+					  <option value="Persons_Netherlands_Percentage" <?php echo ($nationality == "Persons_Netherlands_Percentage" ? "selected" : "") ;?>>Netherlands</option>
+					  <option value="Persons_New_Zealand_Percentage" <?php echo ($nationality == "Persons_New_Zealand_Percentage" ? "selected" : "") ;?>>New Zealand</option>
+					  <option value="Persons_Philippines_Percentage" <?php echo ($nationality == "Persons_Philippines_Percentage" ? "selected" : "") ;?>>Philippines</option>
+					  <option value="Persons_Scotland_Percentage" <?php echo ($nationality == "Persons_Scotland_Percentage" ? "selected" : "") ;?>>Scotland</option>
+					  <option value="Persons_Singapore_Percentage" <?php echo ($nationality == "Persons_Singapore_Percentage" ? "selected" : "") ;?>>Singapore</option>
+					  <option value="Persons_South_Africa_Percentage" <?php echo ($nationality == "Persons_South_Africa_Percentage" ? "selected" : "") ;?>>South Africa</option>
+					  <option value="Persons_Sri_Lanka_Percentage" <?php echo ($nationality == "Persons_Sri_Lanka_Percentage" ? "selected" : "") ;?>>Sri Lanka</option>  
+					  <option value="Persons_United_States_of_America_Percentage" <?php echo ($nationality == "Persons_United_States_of_America_Percentage" ? "selected" : "") ;?>>United States of America</option>
+					  <option value="Persons_Vietnam_Percentage" <?php echo ($nationality == "Persons_Vietnam_Percentage" ? "selected" : "") ;?>>Vietnam</option>
 					  </select>
 					  <p class="form-title">Education Important?</p>
 					  <select name="education">
@@ -322,23 +313,49 @@
 					  <option value="no">No</option>
 					  </select>
 					  <p class="form-title">Language</p>
-					  <input type="radio" name="language" value="Language_spoken_at_home_English_only" >English</input>
-					  <input type="radio" name="language" value="Language_spoken_at_home_Other_Language">Other Language</input>
+					  <input type="radio" name="language" value="Language_spoken_at_home_English_only" <?php echo ($language == "Language_spoken_at_home_English_only" ? "checked" : "") ;?>>English</input>
+					  <input type="radio" name="language" value="Language_spoken_at_home_Other_Language"<?php echo ($language == "Language_spoken_at_home_Other_Language" ? "checked" : "" ) ;?>>Other Language</input>
 					<p class="form-title">Religion</p>
 						<select name="religion">
-						<option value="Buddhism"  >Buddhism</option>
-    					<option value="Christianity"  >Christianity</option>
-    					<option value="Hinduism"  >Hinduism</option>
-    					<option value="Islam"  >Islam</option>
-						<option value="Judaism"  >Judaism</option>
-    					<option value="Other_Religions_Total"  >Other</option>
-    					<option value="No_Religion"  >No Religion</option>
-						<option value="Religious_affiliation_not_stated"  >Religious not stated</option>
+						<option value="Buddhism" <?php echo ($religion == "Buddhism" ? "selected" : "") ;?> >Buddhism</option>
+    					<option value="Christianity" <?php echo ($religion == "Christianity" ? "selected" : "") ;?> >Christianity</option>
+    					<option value="Hinduism" <?php echo ($religion == "Hinduism" ? "selected" : "") ;?> >Hinduism</option>
+    					<option value="Islam" <?php echo ($religion == "Islam" ? "selected" : "") ;?> >Islam</option>
+						<option value="Judaism" <?php echo ($religion == "Judaism" ? "selected" : "") ;?> >Judaism</option>
+    					<option value="Other_Religions_Total" <?php echo ($religion == "Other_Religions_Total" ? "selected" : "") ;?> >Other</option>
+    					<option value="No_Religion" <?php echo ($religion == "No_Religion" ? "selected" : "") ;?> >No Religion</option>
+						<option value="Religious_affiliation_not_stated" <?php echo ($religion == "Religious_affiliation_not_stated" ? "selected" : "") ;?> >Religious not stated</option>
     				</select>
 					<p class="form-title">Salary</p>
+					<select name="salary">
+						<option value="Negative_Nil_income_Total_Percentage" <?php echo ($religion == "Negative_Nil_income_Total_Percentage" ? "selected" : "") ;?> >0</option>
+    					<option value="Total_One_Two_Hundred" <?php echo ($salary == "Total_One_Two_Hundred" ? "selected" : "") ;?> >1-199 per week</option>
+    					<option value="Total_Two_Three_Hundred" <?php echo ($salary == "Total_Two_Three_Hundred" ? "selected" : "") ;?> >200-299 per week</option>
+    					<option value="Total_Three_Four_Hundred" <?php echo ($salary == "Total_Three_Four_Hundred" ? "selected" : "") ;?> >300-399 per week</option>
+						<option value="Total_Four_Six_Hundred" <?php echo ($salary == "Total_Four_Six_Hundred" ? "selected" : "") ;?> >400-599 per week</option>
+    					<option value="Total_Six_Eight_Hundred" <?php echo ($salary == "Total_Six_Eight_Hundred" ? "selected" : "") ;?> >600-799 per week</option>
+    					<option value="Total_Eight_Thousand" <?php echo ($salary == "Total_Eight_Thousand" ? "selected" : "") ;?> >800-899 per week</option>
+						<option value="Total_Thousand_Twelve_Thousand" <?php echo ($salary == "Total_Thousand_Twelve_Thousand" ? "selected" : "") ;?> >1000-1249 per week</option>
+						<option value="Total_Twelve_Fifteen_Thousand" <?php echo ($salary == "Total_Twelve_Fifteen_Thousand" ? "selected" : "") ;?> >1250-1499 per week</option>
+    					<option value="Total_Fifteen_Two_Thousand" <?php echo ($salary == "Total_Fifteen_Two_Thousand" ? "selected" : "") ;?> >1500-1999 per week</option>
+    					<option value="Total_Two_Thousand" <?php echo ($salary == "Total_Two_Thousand" ? "selected" : "") ;?> >2000 or more</option>
+						<option value="Personal_income_not_stated_Total_Percentage" <?php echo ($salary == "Personal_income_not_stated_Total_Percentage" ? "selected" : "") ;?> >Salary not stated</option>		
+    				</select>
+					<p class="form-title">Employment</p>
+						<input type="radio" name="employment" value="Employed_worked_Full_time_Total_Percentage" <?php echo ($employment == "Employed_worked_Full_time_Total_Percentage" ? "checked" : "") ;?>>Full-Time</input>
+						<input type="radio" name="employment" value="Employed_worked_Part_time_Total_Percentage"<?php echo ($employment == "Employed_worked_Part_time_Total_Percentage" ? "checked" : "" ) ;?>>Part-Time</input>
+					<p class="form-title">Children</p>
+						<select name="children">
+						<option value="Total_Number_of_children_ever_born_No_children" <?php echo ($children == "Total_Number_of_children_ever_born_No_children" ? "selected" : "") ;?> >0</option>
+    					<option value="Total_Number_of_children_ever_born_One_child" <?php echo ($children == "Total_Number_of_children_ever_born_One_child" ? "selected" : "") ;?> >1</option>
+    					<option value="Total_Number_of_children_ever_born_Two_children" <?php echo ($children == "Total_Number_of_children_ever_born_Two_children" ? "selected" : "") ;?> >2</option>
+    					<option value="Total_Number_of_children_ever_born_Three_children" <?php echo ($children == "Total_Number_of_children_ever_born_Three_children" ? "selected" : "") ;?> >3</option>
+						<option value="Total_Number_of_children_ever_born_Four_children" <?php echo ($children == "Total_Number_of_children_ever_born_Four_children" ? "selected" : "") ;?> >4</option>
+    					<option value="Total_Number_of_children_ever_born_Five_children" <?php echo ($children == "Total_Number_of_children_ever_born_Five_children" ? "selected" : "") ;?> >5</option>
+    					<option value="Total_Number_of_children_ever_born_Six_or_more_children" <?php echo ($children == "Total_Number_of_children_ever_born_Six_or_more_children" ? "selected" : "") ;?> >6 or more</option>
+						</select>				
 					
-					
-					<input id="joni" type="submit" value="Search" name="submit" onsubmit="getIndex()">
+					<input id="joni" type="submit" value="Find Your Match" name="submit" onsubmit="getIndex()">
     			</form>
 				
 				
@@ -347,8 +364,7 @@
     		<div class="softener">
     		</div>
     		<div class="show-hide">
-				
-    			<p id="magic"><a href="#"><img src="images/logo3.png" alt="Census Matchmaker"></p>
+    			<p id="magic" class="rotate">Hide <?=$_SESSION['formIndex']?></p>
 				<script>
 					$(document).ready(function(){
 				$(".show-hide").click(function(){
@@ -358,12 +374,25 @@
 				</script>
     		</div>
     	</div>
-		
-			
-		
+		<div class="graph-box" >
+			<div class="show-hide-graph">
+    			<p id="magic" class="rotate">Hide</p>
+				<script>
+					$(document).ready(function(){
+				$(".show-hide-graph").click(function(){
+					$(".graph-area").toggle();
+					});
+				});
+				</script>
+    		</div>
+    		<div class="softener-graph">
+    		</div>
+			<div class="graph-area">
+				<div id="chart_div">
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+		</div>
   	</body>
 </html>
-<!-- Hosting24 Analytics Code -->
-<script type="text/javascript" src="http://stats.hosting24.com/count.php"></script>
-<!-- End Of Analytics Code -->
-//hiii
