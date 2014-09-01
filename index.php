@@ -116,8 +116,20 @@
 			$salary= $_SESSION['salary'];
 			$employment = $_SESSION['employment'];
 			$children = $_SESSION['children'];
-			
 		}
+		
+		if (isset($_GET['gender'])) 
+		{
+			$gender = $_GET['gender'];
+			$age = $_GET['ageRange'];
+			$nationality = $_GET['nationality'];
+			$education = $_GET['education'];
+			$language = $_GET['language'];
+			$religion = $_GET['religion'];
+			$salary= $_GET['salary'];
+			$employment = $_GET['employment'];
+			$children = $_GET['children'];
+		}		
 		?>
 		if(flag == "go")
 		{	//put the values from the session to javascript variables
@@ -131,10 +143,14 @@
 			employment = '<?=$employment;?>';
 			children = '<?=$children;?>';
 		}
-	   // Create Google Fusion Table layer
-
-
-
+	var url = "http://deco3801-22.uqcloud.net/Sharing/index.php" + "?gender=" + gender + "&ageRange="+ age + "&nationality=" + nationality + "&education=" + education + "&language=" + language + "&religion=" + religion + "&salary=" + salary + "&employment=" + employment + "&children=" + children;
+	var fParam = document.getElementById( "shareface" );
+	var tParam = document.getElementById( "sharetweet" );
+	fParam.setAttribute( "data-href", url );
+	tParam.setAttribute( "data-url", url );
+	
+		
+	// Create Google Fusion Table layer
 	   var layer = new google.maps.FusionTablesLayer({
 		 query: {
 			select: 'geography',
@@ -256,6 +272,19 @@
 	
   </head>
   <body onload="">
+		//function for fb share
+		<div id="fb-root"></div>
+		<script>
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0";
+			fjs.parentNode.insertBefore(js, fjs);
+		}
+		(document, 'script', 'facebook-jssdk'));
+		</script>
+		
 		<div id="header">
 			<div class="logo-main"><a href="#"><img src="images/logo2.png" alt="Census Matchmaker"></a>
 			</div>
@@ -357,9 +386,20 @@
 					
 					<input id="joni" type="submit" value="Find Your Match" name="submit" onsubmit="getIndex()">
     			</form>
-				
-				
-				
+			<div id="shareface" class="fb-share-button" data-width="30"></div>
+				<a id="sharetweet" href="https://twitter.com/share" class="twitter-share-button" data-text="sdfgadfg" data-count="none">Tweet</a>
+				<script>
+					!function(d,s,id){
+						var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+						if(!d.getElementById(id)){
+							js=d.createElement(s);
+							js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
+							fjs.parentNode.insertBefore(js,fjs);
+						}
+					}
+					(document, 'script', 'twitter-wjs');
+				</script>	
+								
     		</div>
     		<div class="softener">
     		</div>
