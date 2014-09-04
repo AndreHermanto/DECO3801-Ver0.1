@@ -90,13 +90,12 @@
       google.maps.event.addListener(map, 'zoom_changed', function() {
      if (map.getZoom() < minZoomLevel) map.setZoom(minZoomLevel);
    });
-	   
-	   
-	  // Hardcode variables for testing purposes
-	   var gender = "";
-	   var age = "Persons_Percentage_Age_15_24_years";
-	   var nationality = "Persons_Australia_Percentage";
-	   var flag = '<?=$_SESSION['flag']?>'; //takes the flag from session
+   			
+		// Hardcode variables for testing purposes
+		var gender = "";
+		var age = "Persons_Percentage_Age_15_24_years";
+		var nationality = "Persons_Australia_Percentage";
+		var flag = '<?=$_SESSION['flag']?>'; //takes the flag from session
 		var education ="Highest_year_of_school_completed_Did_not_go_to_school";
 		var language="Language_spoken_at_home_English_only";
 		var religion="Christianity";
@@ -104,7 +103,20 @@
 		var employment="Employed_worked_Full_time_Total_Percentage";
 		var children = "Total_Number_of_children_ever_born_No_children";
 	   
-	   <?php 
+		<?php 
+		if (isset($_GET['gender'])) 
+		{
+			$_SESSION['gender'] = $_GET['gender'];
+			$_SESSION['ageRange'] = $_GET['ageRange'];
+			$_SESSION['nationality'] = $_GET['nationality'];
+			$_SESSION['education'] = $_GET['education'];
+			$_SESSION['language'] = $_GET['language'];
+			$_SESSION['religion'] = $_GET['religion'];
+			$_SESSION['salary']= $_GET['salary'];
+			$_SESSION['employment'] = $_GET['employment'];
+			$_SESSION['children'] = $_GET['children'];	
+		}
+		
 		if(isset($_SESSION['gender'])) 
 		{	//takes the values from session
 			$gender = $_SESSION['gender'];
@@ -116,19 +128,6 @@
 			$salary= $_SESSION['salary'];
 			$employment = $_SESSION['employment'];
 			$children = $_SESSION['children'];
-		}
-		
-		if (isset($_GET['gender'])) 
-		{
-			$gender = $_GET['gender'];
-			$age = $_GET['ageRange'];
-			$nationality = $_GET['nationality'];
-			$education = $_GET['education'];
-			$language = $_GET['language'];
-			$religion = $_GET['religion'];
-			$salary= $_GET['salary'];
-			$employment = $_GET['employment'];
-			$children = $_GET['children'];
 		}		
 		?>
 		if(flag == "go")
@@ -147,7 +146,8 @@
 	var fParam = document.getElementById( "shareface" );
 	var tParam = document.getElementById( "sharetweet" );
 	fParam.setAttribute( "data-href", url );
-	tParam.setAttribute( "data-url", url );
+	tParam.setAttribute( "data-url", "http://deco3801-22.uqcloud.net/Sharing/index.php?" );
+	tParam.setAttribute( "data-counturl", url );
 	
 		
 	// Create Google Fusion Table layer
@@ -252,8 +252,7 @@
 					return "";
 				}
 				function getIndex()
-				{ 
-					
+				{ 					
 					var natIndex = document.getElementById("natForm").selectedIndex;
 					setCookie("nat", natIndex, 1);
 				}
