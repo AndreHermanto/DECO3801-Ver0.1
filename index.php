@@ -28,16 +28,16 @@
 	     var mapOptions = {
 		   // How zoomed in you want the map to start at (always required)
 		   zoom: 5,
-							   minZoom: 5,
-							   maxZoom: 10,
-							   // Turns off/on the zoom controls. Positioned at bottom-right.
-							   zoomControl: true,
-							   zoomControlOptions: {
-									   style: google.maps.ZoomControlStyle.LARGE,
-									   position: google.maps.ControlPosition.RIGHT_TOP
-							   },
-							   // Turn off street view
-							   streetViewControl: false,
+		   minZoom: 5,
+		   maxZoom: 10,
+		   // Turns off/on the zoom controls. Positioned at bottom-right.
+		   zoomControl: true,
+		   zoomControlOptions: {
+				style: google.maps.ZoomControlStyle.LARGE,
+				position: google.maps.ControlPosition.RIGHT_TOP
+				},
+		   // Turn off street view
+		   streetViewControl: false,
 
 							   
 							   
