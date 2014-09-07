@@ -10,21 +10,22 @@
       body { height: 100%; margin: 0; padding: 0 }
       #map { height: 82% }
     </style>
-	<!--<script type="text/javascript" src="js/javascript.js"></script>-->
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>
-	
+	<!--Link to CSS File-->
 	<link type="text/css" rel="stylesheet" href="css/stylebono.css" />
+	<!--Font Style-->
 	<link href='http://fonts.googleapis.com/css?family=Overlock:400,900' rel='stylesheet' type='text/css'>
 
-	
+	<!--Connect to google map API-->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAo3z4buaY-xjj9YXQexPl_DQLCv03XRFo&sensor=true"></script>
 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=drawing&sensor=true"></script>
 	
 	<script type="text/javascript">
+	//Initialize Google MAP
 	 function init() {
 	      var apiKey = "1md9UwiFfywVXX8iPH5x4srBHQ9XwXFA3LO3wEDAT";
-		  
+		  //Map Style and Configuration
 	     var mapOptions = {
 		   // How zoomed in you want the map to start at (always required)
 		   zoom: 5,
@@ -59,6 +60,7 @@
 	   // Create the Google Map using out element and options defined above
 	   var map = new google.maps.Map(mapElement, mapOptions);
 	   
+	   //Creating boundary for user to see outside Australia
 		var strictBounds = new google.maps.LatLngBounds( 
 		new google.maps.LatLng(-45.739861, 110.205078), 
    	    new google.maps.LatLng(-10.449624, 155.048828) 
@@ -69,8 +71,7 @@
    google.maps.event.addListener(map, 'dragend', function() {
      if (strictBounds.contains(map.getCenter())) return;
 
-     // We're out of bounds - Move the map back within the bounds
-
+     // Set Center Point within the boundary
      var c = map.getCenter(),
          x = c.lng(),
          y = c.lat(), 
@@ -108,6 +109,7 @@
 				
 		if (isset($_GET['gender'])) 
 		{
+			//Set Session
 			$_SESSION['gender'] = $_GET['gender'];
 			$_SESSION['ageRange'] = $_GET['ageRange'];
 			$_SESSION['nationality'] = $_GET['nationality'];
@@ -146,6 +148,7 @@
 			employment = '<?=$employment;?>';
 			children = '<?=$children;?>';
 		}
+		//Create URL for Facebook and Twitter API
 	url = "http://deco3801.host22.com/Finaltest/index.php" + "?gender=" + gender + "&ageRange="+ age + "&nationality=" + nationality + "&education=" + education + "&language=" + language + "&religion=" + religion + "&salary=" + salary + "&employment=" + employment + "&children=" + children;
 	var fParam = document.getElementById("shareface");
 	var tParam = document.getElementById("sharetweet");
@@ -155,6 +158,7 @@
 		
 	// Create Google Fusion Table layer
 	   var layer = new google.maps.FusionTablesLayer({
+	   //Query Design
 		 query: {
 			select: 'geography',
 			from: apiKey
@@ -254,6 +258,7 @@
 					}
 					return "";
 				}
+				//Get Nationality Value
 				function getIndex()
 				{ 
 					
@@ -275,7 +280,7 @@
 	
   </head>
   <body onload="">
-		//function for fb share
+		<!--function for fb share-->
 		<div id="fb-root"></div>
 		<script>
 		(function(d, s, id) {
@@ -302,7 +307,7 @@
     			<form action="setSession.php" method="post">
 
 					
-					<section class="main">
+			<section class="main">
 				<div class="wrapper-demo">
 					<div id="dd" class="wrapper-dropdown-1" tabindex="1">
 						<span>Gender</span>
@@ -318,7 +323,7 @@
 					
 					
 					
-					<section class="main">
+			<section class="main">
 				<div class="wrapper-demo1">
 					<div id="dd3" class="wrapper-dropdown-Age" tabindex="1">
 						<span>Age Group</span>
@@ -333,7 +338,7 @@
 			</section>
 					
 					
-					 <section class="main">
+			<section class="main">
 				<div class="wrapper-demoEdu">
 					<div id="dd4" class="wrapper-dropdown-Edu" tabindex="1">
 						<span>Educated</span>
@@ -347,7 +352,7 @@
 					
 					
 					
-					<section class="main">
+			<section class="main">
 				<div class="wrapper-demoLang">
 					<div id="ddLang" class="wrapper-dropdown-Lang" tabindex="1">
 						<span>Language</span>
@@ -359,11 +364,9 @@
 				​</div>
 			</section>
 					
+									
 					
-					
-					
-					
-					 	<section class="main">
+			<section class="main">
 				<div class="wrapper-Reli">
 					<div id="ddReli" class="wrapper-dropdown-Reli" tabindex="1">
 						<span>Religion</span>
@@ -380,15 +383,8 @@
 				</div>
 			</section>
 					
-					
-					
-					
-					
-				
-					
-					
-					
-					<section class="main">
+									
+			<section class="main">
 				<div class="wrapper-Salary">
 					<div id="ddSalary" class="wrapper-dropdown-Salary" tabindex="1">
 						<span>Salary</span>
@@ -409,15 +405,10 @@
 						</ul>
 					</div>
 				</div>
-			</section>
+			</section>			
 					
 					
-					
-					
-					
-					
-					
-							<section class="main">
+			<section class="main">
 				<div class="wrapper-Employment">
 					<div id="ddEmployment" class="wrapper-dropdown-Employment" tabindex="1">
 						<span>Employment</span>
@@ -433,7 +424,7 @@
 					
 					
 					
-							 	<section class="main">
+			<section class="main">
 				<div class="wrapper-Children">
 					<div id="ddChildren" class="wrapper-dropdown-Children" tabindex="1">
 						<span>Children</span>
@@ -449,12 +440,7 @@
 					</div>
 				</div>
 			</section>
-					
-					
-					
-	
-			
-			
+											
 			
 			<section class="main">
 				<div class="wrapper-demo2">
@@ -495,7 +481,8 @@
 	
 	
 	
-						<script>
+					<script>
+					//Set value to the form based on user click
 							
 					/*Gender*/
 					$('#male').click(function (){
@@ -523,7 +510,7 @@
 					
 					
 					
-						/*Religion*/
+					/*Religion*/
 					$('#Buddhism1').click(function (){
 						document.getElementById('religion').value = "Buddhism";					
 					})
@@ -546,7 +533,7 @@
 						document.getElementById('religion').value = "No_Religion";
 					})
 					
-					
+					/*Salary*/
 					$('#salary1').click(function (){
 						document.getElementById('salary').value = "Negative_Nil_income_Total_Percentage";					
 					})
@@ -582,16 +569,10 @@
 					})
 					$('#salary12').click(function(){
 						document.getElementById('salary').value = "Personal_income_not_stated_Total_Percentage";					
-					})
+					})				
 					
 					
-					
-					
-					
-					
-					
-					
-					/*Nattionality*/
+					/*Nationality*/
 					$('#australia').click(function (){
 						document.getElementById('nationality').value = "Persons_Australia_Percentage";					
 					})
@@ -677,7 +658,7 @@
 						document.getElementById('nationality').value = "Persons_Vietnam_Percentage";					
 					})
 					
-					// Age Group
+					//Age Group
 					$('#age15').click(function (){
 						document.getElementById('ageRange').value = "Persons_Percentage_Age_15_24_years";					
 					})
@@ -692,7 +673,7 @@
 					})
 					
 				
-					// Age Group
+					//Total Child
 					$('#child1').click(function (){
 						document.getElementById('children').value = "Total_Number_of_children_ever_born_No_children";					
 					})
@@ -726,6 +707,7 @@
 					
 					
 					</script>
+					<!--Form to be passed-->
 					<input type="hidden" id="gender" name="gender" value=""></input>
 	  				<input type="hidden" name="ageRange" id="ageRange" value=""></input>
 	  				<input type="hidden" id="education" name="education" value=""></input>
@@ -776,12 +758,11 @@
 			</div>
 		</div>
 
-
-
-<!-- jQuery if needed -->
+		<!-- jQuery -->
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script type="text/javascript">
-			
+			/*Dropdown Menu
+			*/
 			function DropDown(el) {
 				this.dd = el;
 				this.placeholder = this.dd.children('span');
