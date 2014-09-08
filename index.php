@@ -142,13 +142,20 @@
 			employment = '<?=$employment;?>';
 			children = '<?=$children;?>';
 		}
-	url = "http://deco3801.host22.com/Finaltest/index.php" + "?gender=" + gender + "&ageRange="+ age + "&nationality=" + nationality + "&education=" + education + "&language=" + language + "&religion=" + religion + "&salary=" + salary + "&employment=" + employment + "&children=" + children;
+	url = "http://deco3801-22.zones.eait.uq.edu.au/Sharing/index.php" + "?gender=" + gender + "&ageRange="+ age + "&nationality=" + nationality + "&education=" + education + "&language=" + language + "&religion=" + religion + "&salary=" + salary + "&employment=" + employment + "&children=" + children;
 	var fParam = document.getElementById("shareface");
-	var tParam = document.getElementById("sharetweet");
 	fParam.setAttribute( "data-href", url );
-	tParam.setAttribute( "data-url", "http://deco3801.host22.com/Finaltest/index.php?" );
-	tParam.setAttribute( "data-counturl", url );
-		
+	twttr.ready(function (twttr) {
+		twttr.widgets.createShareButton(
+			url,
+			document.getElementById('shareface'), 
+			function (el) {
+				console.log("Button created.")
+			}, {
+				text: 'fff',
+				count:'none'
+			});
+	});		
 	// Create Google Fusion Table layer
 	   var layer = new google.maps.FusionTablesLayer({
 		 query: {
@@ -740,18 +747,23 @@
 					<input id="joni" type="submit" value="Find Your Match" name="submit" onsubmit="getIndex()">
     			</form>
 			<div id="shareface" class="fb-share-button" data-width="30"></div>
-				<a id="sharetweet" href="https://twitter.com/share" class="twitter-share-button" data-text="sdfgadfg" data-count="none">Tweet</a>
-				<script>
-					!function(d,s,id){
-						var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-						if(!d.getElementById(id)){
-							js=d.createElement(s);
-							js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
-							fjs.parentNode.insertBefore(js,fjs);
+			<!--<div id="sharetweet"></div>-->
+			<script>
+				window.twttr = (function (d, s, id) {
+				var t, js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s);
+				js.id = id;
+				js.src = "https://platform.twitter.com/widgets.js";
+				fjs.parentNode.insertBefore(js, fjs);
+				return window.twttr || (
+					t = {
+						_e: [],ready: function (f) {
+							t._e.push(f)
 						}
-					}
-					(document, 'script', 'twitter-wjs');
-				</script>	
+					});
+				}(document, "script", "twitter-wjs"));
+			</script>
 								
     		</div>
     		<div class="softener">
