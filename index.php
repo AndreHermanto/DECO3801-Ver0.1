@@ -88,7 +88,7 @@
    });
 	   
 	   
-	  // Hardcode variables for testing purposes
+		// Hardcode variables for testing purposes
 		var gender = "";
 		var age = "Persons_Percentage_Age_15_24_years";
 		var nationality = "Persons_Australia_Percentage";
@@ -100,10 +100,11 @@
 		var employment="Employed_worked_Full_time_Total_Percentage";
 		var children = "Total_Number_of_children_ever_born_No_children";
 	   
-	   <?php 
-				
+		<?php 
+		//check whether it's a shared link or a new one		
 		if (isset($_GET['gender'])) 
 		{
+			//take the value for session from the url
 			$_SESSION['gender'] = $_GET['gender'];
 			$_SESSION['ageRange'] = $_GET['ageRange'];
 			$_SESSION['nationality'] = $_GET['nationality'];
@@ -142,20 +143,23 @@
 			employment = '<?=$employment;?>';
 			children = '<?=$children;?>';
 		}
-	url = "http://deco3801-22.zones.eait.uq.edu.au/Sharing/index.php" + "?gender=" + gender + "&ageRange="+ age + "&nationality=" + nationality + "&education=" + education + "&language=" + language + "&religion=" + religion + "&salary=" + salary + "&employment=" + employment + "&children=" + children;
-	var fParam = document.getElementById("shareface");
-	fParam.setAttribute( "data-href", url );
-	twttr.ready(function (twttr) {
-		twttr.widgets.createShareButton(
-			url,
-			document.getElementById('shareface'), 
-			function (el) {
-				console.log("Button created.")
-			}, {
-				text: 'fff',
-				count:'none'
-			});
-	});		
+		// construct a url that could be shared
+		url = "http://deco3801-22.zones.eait.uq.edu.au/Sharing/index.php" + "?gender=" + gender + "&ageRange="+ age + "&nationality=" + nationality + "&education=" + education + "&language=" + language + "&religion=" + religion + "&salary=" + salary + "&employment=" + employment + "&children=" + children;
+		//send the constructed url to the facebook button
+		var fParam = document.getElementById("shareface");
+		fParam.setAttribute( "data-href", url );
+		//initialize twitter button with the constructed url
+		twttr.ready(function (twttr) {
+			twttr.widgets.createShareButton(
+				url,
+				document.getElementById('shareface'), 
+				function (el) {
+					console.log("Button created.")
+				}, {
+					text: 'fff',
+					count:'none'
+				});
+		});		
 	// Create Google Fusion Table layer
 	   var layer = new google.maps.FusionTablesLayer({
 		 query: {
@@ -278,6 +282,7 @@
 	
   </head>
   <body onload="">
+		<!-- script on how both twitter and facebook sharing button should act-->
 		<div id="fb-root"></div>
 		<script>
 		(function(d, s, id) {
@@ -288,6 +293,22 @@
 			fjs.parentNode.insertBefore(js, fjs);
 		}
 		(document, 'script', 'facebook-jssdk'));
+		</script>		
+		<script>
+			window.twttr = (function (d, s, id) {
+			var t, js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "https://platform.twitter.com/widgets.js";
+			fjs.parentNode.insertBefore(js, fjs);
+			return window.twttr || (
+				t = {
+					_e: [],ready: function (f) {
+						t._e.push(f)
+					}
+				});
+			}(document, "script", "twitter-wjs"));
 		</script>
 		
 		<div id="header">
@@ -752,25 +773,9 @@
 					<!--Submit Button-->
 					<input id="joni" type="submit" value="Find Your Match" name="submit" onsubmit="getIndex()">
     			</form>
-				
+			<!--The sharing button placement</div>-->
 			<div id="shareface" class="fb-share-button" data-width="30"></div>
 			<!--<div id="sharetweet"></div>-->
-			<script>
-				window.twttr = (function (d, s, id) {
-				var t, js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id)) return;
-				js = d.createElement(s);
-				js.id = id;
-				js.src = "https://platform.twitter.com/widgets.js";
-				fjs.parentNode.insertBefore(js, fjs);
-				return window.twttr || (
-					t = {
-						_e: [],ready: function (f) {
-							t._e.push(f)
-						}
-					});
-				}(document, "script", "twitter-wjs"));
-			</script>
 								
     		</div>
     		<div class="softener">
