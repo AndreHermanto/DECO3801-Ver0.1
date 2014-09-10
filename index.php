@@ -302,13 +302,16 @@
     				<h3>Match Criterias</h3>
     			</div>
     			<form action="setSession.php" method="post">
-
+					
+					<!--This is the start of the dropdown menu as the first dropdownbar is the gender-->
 					
 					<section class="main">
+					<!--Calls in the css for the position of the dropdown bar .wraper-demo-->
 				<div class="wrapper-demo">
 					<div id="dd" class="wrapper-dropdown-1" tabindex="1">
 						<span>Gender</span>
 					    <ul class="dropdown" tabindex="1">
+						<!--Because the selection is send to the gender variable thus we send it to Males_Total_Percentage or Females_Total_Percentage -->
 					        <li id="male"><a value="Males_Total_Percentage"><i <?php echo ($gender == "Males_Total_Percentage" ? "selected" : "") ;?> ></i>Male</a></li>
 					        <li id="female"><a value="Females_Total_Percentage"><i <?php echo ($gender == "Females_Total_Percentage" ? "selected" : "") ;?> ></i>Female</a></li>
 					    </ul>
@@ -321,10 +324,12 @@
 					
 					
 					<section class="main">
+					<!--Calls in the css for the position of the dropdown bar .wraper-demo1-->
 				<div class="wrapper-demo1">
 					<div id="dd3" class="wrapper-dropdown-Age" tabindex="1">
 						<span>Age Group</span>
 					    <ul class="dropdownAge" tabindex="1">
+						<!--Because the selection is send to the age variable thus we send it to ageRange == "Persons_Percentage_Age ..... -->
 					   <li id="age15"><a value="Persons_Percentage_Age_15_24_years"><i <?php echo ($ageRange == "Persons_Percentage_Age_15_24_years" ? "selected" : "") ;?> ></i>18-24 years</a></li>
 					   <li id="age25"><a value="Persons_Percentage_Age_25_44_years"><i <?php echo ($ageRange == "Persons_Percentage_Age_25_44_years" ? "selected" : "") ;?> ></i>25-44 years</a></li>
 					   <li id="age45"><a value="Persons_Percentage_Age_45_54_years"><i <?php echo ($ageRange == "Persons_Percentage_Age_45_54_years" ? "selected" : "") ;?> ></i>45-54 years</a></li>
@@ -336,10 +341,12 @@
 					
 					
 					 <section class="main">
-				<div class="wrapper-demoEdu">
+					 	<!--Calls in the css for the position of the dropdown bar-->
+				<div class="wrapper-demoEdu">				
 					<div id="dd4" class="wrapper-dropdown-Edu" tabindex="1">
 						<span>Educated</span>
 					    <ul class="dropdownEdu" tabindex="1">
+						<!--Because the selection is send to the age variable thus we send it to education == "Highest_year_of_school_completed_Did_not_go_to_school-->
 					   <li id="yes"><a value="Highest_year_of_school_completed_Did_not_go_to_school"><i <?php echo ($education == "Highest_year_of_school_completed_Did_not_go_to_school" ? "selected" : "") ;?> ></i>Yes</a></li>
 					   <li id="no"><a value="no"><i <?php echo ($education == "no" ? "selected" : "") ;?> ></i>No</a></li>
 					    </ul>
@@ -350,6 +357,7 @@
 					
 					
 					<section class="main">
+				<!--Calls in the css for the position of the drop down bar-->
 				<div class="wrapper-demoLang">
 					<div id="ddLang" class="wrapper-dropdown-Lang" tabindex="1">
 						<span>Language</span>
@@ -366,6 +374,7 @@
 					
 					
 					 	<section class="main">
+					 	<!--Calls in the css for the position of the drop down bar-->
 				<div class="wrapper-Reli">
 					<div id="ddReli" class="wrapper-dropdown-Reli" tabindex="1">
 						<span>Religion</span>
@@ -392,6 +401,7 @@
 					
 					<section class="main">
 				<div class="wrapper-Salary">
+					<!--Calls in the css for the position of the dropdown bar-->
 					<div id="ddSalary" class="wrapper-dropdown-Salary" tabindex="1">
 						<span>Salary</span>
 						<ul class="dropdownSalary">
@@ -414,12 +424,8 @@
 			</section>
 					
 					
-					
-					
-					
-					
-					
 							<section class="main">
+					 <!--Calls in the css for the position of the dropdown bar-->
 				<div class="wrapper-Employment">
 					<div id="ddEmployment" class="wrapper-dropdown-Employment" tabindex="1">
 						<span>Employment</span>
@@ -436,6 +442,7 @@
 					
 					
 							 	<section class="main">
+				<!--Calls in the css for the position of the dropdown bar-->
 				<div class="wrapper-Children">
 					<div id="ddChildren" class="wrapper-dropdown-Children" tabindex="1">
 						<span>Children</span>
@@ -459,6 +466,7 @@
 			
 			
 			<section class="main">
+				<!--Calls in the css for the position of the dropdown bar-->
 				<div class="wrapper-demo2">
 					<div id="dd2" class="wrapper-dropdown-Nat" tabindex="1">
 						<span>Nationality</span>
@@ -499,7 +507,7 @@
 	
 						<script>
 							
-					/*Gender*/
+					/*Gender when a user selects*/
 					$('#male').click(function (){
 						document.getElementById('gender').value = "Males_Total_Percentage";					
 					})
@@ -507,7 +515,7 @@
 						document.getElementById('gender').value = "Females_Total_Percentage";
 					})
 					
-					/*Education*/
+					/*Education when a user selects*/
 					$('#yes').click(function (){
 						document.getElementById('education').value = "Highest_year_of_school_completed_Did_not_go_to_school";					
 					})
@@ -515,7 +523,7 @@
 						document.getElementById('education').value = "no";
 					})
 					
-					/*Language*/
+					/*Language when a user selects*/
 					$('#langy').click(function (){
 						document.getElementById('language').value = "Language_spoken_at_home_English_only";					
 					})
@@ -525,7 +533,7 @@
 					
 					
 					
-						/*Religion*/
+					/*Religion when a user selects*/
 					$('#Buddhism1').click(function (){
 						document.getElementById('religion').value = "Buddhism";					
 					})
@@ -548,7 +556,7 @@
 						document.getElementById('religion').value = "No_Religion";
 					})
 					
-					
+					/*Salary when a user selects*/
 					$('#salary1').click(function (){
 						document.getElementById('salary').value = "Negative_Nil_income_Total_Percentage";					
 					})
@@ -587,13 +595,9 @@
 					})
 					
 					
+
 					
-					
-					
-					
-					
-					
-					/*Nattionality*/
+					/*Nationality when user selects*/
 					$('#australia').click(function (){
 						document.getElementById('nationality').value = "Persons_Australia_Percentage";					
 					})
@@ -679,7 +683,7 @@
 						document.getElementById('nationality').value = "Persons_Vietnam_Percentage";					
 					})
 					
-					// Age Group
+					/* Age Group when user selects */
 					$('#age15').click(function (){
 						document.getElementById('ageRange').value = "Persons_Percentage_Age_15_24_years";					
 					})
@@ -694,7 +698,7 @@
 					})
 					
 				
-					// Age Group
+					/*  Amount of children when user selects */
 					$('#child1').click(function (){
 						document.getElementById('children').value = "Total_Number_of_children_ever_born_No_children";					
 					})
@@ -718,7 +722,7 @@
 					})
 					
 					
-					// Age Group
+					/* Employment status when user selects */
 					$('#Employment1').click(function (){
 						document.getElementById('employment').value = "Employed_worked_Full_time_Total_Percentage";					
 					})
@@ -728,6 +732,8 @@
 					
 					
 					</script>
+					
+					<!--Saves all the input from the search constraint-->
 					<input type="hidden" id="gender" name="gender" value=""></input>
 	  				<input type="hidden" name="ageRange" id="ageRange" value=""></input>
 	  				<input type="hidden" id="education" name="education" value=""></input>
@@ -737,15 +743,10 @@
 					<input type="hidden" id="salary" name="salary" value=""></input>
 					<input type="hidden" id="employment" name="employment" value=""></input>
 					<input type="hidden" id="children" name="children" value=""></input>
-
-
-
-
-
-
-					
+					<!--Submit Button-->
 					<input id="joni" type="submit" value="Find Your Match" name="submit" onsubmit="getIndex()">
     			</form>
+				
 			<div id="shareface" class="fb-share-button" data-width="30"></div>
 			<!--<div id="sharetweet"></div>-->
 			<script>
@@ -788,7 +789,7 @@
 <!-- jQuery if needed -->
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script type="text/javascript">
-			
+			<!--Drop down Controls Gender-->
 			function DropDown(el) {
 				this.dd = el;
 				this.placeholder = this.dd.children('span');
@@ -838,7 +839,7 @@
 					});	
 				}
 			}
-			
+			<!--Drop down Controls Nationality-->
 			function dropdownNationality(el) {
 				this.dd = el;
 				this.placeholder = this.dd.children('span');
@@ -872,7 +873,7 @@
 			}
 
 			
-			
+			<!--Drop down Controls Age-->
 			function dropdownAge(el) {
 				this.dd = el;
 				this.placeholder = this.dd.children('span');
@@ -905,7 +906,7 @@
 				}
 			}
 			
-			
+			<!--Drop down Controls Education-->
 			function dropdownEdu(el) {
 				this.dd = el;
 				this.placeholder = this.dd.children('span');
@@ -939,7 +940,7 @@
 			}
 			
 			
-			
+			<!--Drop down Controls Language-->
 			function dropdownLanguage(el) {
 				this.dd = el;
 				this.placeholder = this.dd.children('span');
@@ -972,7 +973,7 @@
 				}
 			}
 			
-			
+			<!--Drop down Controls religion-->
 			function dropdownReli(el) {
 				this.dd = el;
 				this.placeholder = this.dd.children('span');
@@ -1006,7 +1007,7 @@
 			}
 			
 			
-			
+			<!--Drop down Controls Salary-->
 			function dropdownSalary(el) {
 				this.dd = el;
 				this.placeholder = this.dd.children('span');
@@ -1043,7 +1044,7 @@
 			
 			
 			
-			
+			<!--Drop down Controls Employment-->
 			function dropdownEmployment(el) {
 				this.dd = el;
 				this.placeholder = this.dd.children('span');
@@ -1078,7 +1079,7 @@
 			
 			
 			
-			
+			<!--Drop down Controls Children-->
 			function dropdownChildren(el) {
 				this.dd = el;
 				this.placeholder = this.dd.children('span');
@@ -1121,7 +1122,7 @@
 
 			$(function() {
 
-				
+				<!--Saves the selection on the display of the dropdown container-->
 				var dd2 = new dropdownNationality( $('#dd2') );
 				var dd3 = new dropdownAge( $('#dd3') );
 				var dd = new DropDown( $('#dd') );
