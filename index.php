@@ -304,14 +304,13 @@
     			<form action="setSession.php" method="post">
 					
 					<!--This is the start of the dropdown menu as the first dropdownbar is the gender-->
-					
 					<section class="main">
 					<!--Calls in the css for the position of the dropdown bar .wraper-demo-->
 				<div class="wrapper-demo">
 					<div id="dd" class="wrapper-dropdown-1" tabindex="1">
 						<span>Gender</span>
 					    <ul class="dropdown" tabindex="1">
-						<!--Because the selection is send to the gender variable thus we send it to Males_Total_Percentage or Females_Total_Percentage -->
+						<!--Lets users select the choices -->
 					        <li id="male"><a value="Males_Total_Percentage"><i <?php echo ($gender == "Males_Total_Percentage" ? "selected" : "") ;?> ></i>Male</a></li>
 					        <li id="female"><a value="Females_Total_Percentage"><i <?php echo ($gender == "Females_Total_Percentage" ? "selected" : "") ;?> ></i>Female</a></li>
 					    </ul>
@@ -328,8 +327,8 @@
 				<div class="wrapper-demo1">
 					<div id="dd3" class="wrapper-dropdown-Age" tabindex="1">
 						<span>Age Group</span>
+						<!--Lets users select the choices -->
 					    <ul class="dropdownAge" tabindex="1">
-						<!--Because the selection is send to the age variable thus we send it to ageRange == "Persons_Percentage_Age ..... -->
 					   <li id="age15"><a value="Persons_Percentage_Age_15_24_years"><i <?php echo ($ageRange == "Persons_Percentage_Age_15_24_years" ? "selected" : "") ;?> ></i>18-24 years</a></li>
 					   <li id="age25"><a value="Persons_Percentage_Age_25_44_years"><i <?php echo ($ageRange == "Persons_Percentage_Age_25_44_years" ? "selected" : "") ;?> ></i>25-44 years</a></li>
 					   <li id="age45"><a value="Persons_Percentage_Age_45_54_years"><i <?php echo ($ageRange == "Persons_Percentage_Age_45_54_years" ? "selected" : "") ;?> ></i>45-54 years</a></li>
@@ -345,6 +344,7 @@
 				<div class="wrapper-demoEdu">				
 					<div id="dd4" class="wrapper-dropdown-Edu" tabindex="1">
 						<span>Educated</span>
+						<!--Lets users select the choices -->
 					    <ul class="dropdownEdu" tabindex="1">
 						<!--Because the selection is send to the age variable thus we send it to education == "Highest_year_of_school_completed_Did_not_go_to_school-->
 					   <li id="yes"><a value="Highest_year_of_school_completed_Did_not_go_to_school"><i <?php echo ($education == "Highest_year_of_school_completed_Did_not_go_to_school" ? "selected" : "") ;?> ></i>Yes</a></li>
@@ -359,6 +359,7 @@
 					<section class="main">
 				<!--Calls in the css for the position of the drop down bar-->
 				<div class="wrapper-demoLang">
+				<!--Lets users select the choices -->
 					<div id="ddLang" class="wrapper-dropdown-Lang" tabindex="1">
 						<span>Language</span>
 					    <ul class="dropdownLanguage" tabindex="1">
@@ -376,6 +377,7 @@
 					 	<section class="main">
 					 	<!--Calls in the css for the position of the drop down bar-->
 				<div class="wrapper-Reli">
+				<!--Lets users select the choices -->
 					<div id="ddReli" class="wrapper-dropdown-Reli" tabindex="1">
 						<span>Religion</span>
 						<ul class="dropdownReli">
@@ -404,6 +406,7 @@
 					<!--Calls in the css for the position of the dropdown bar-->
 					<div id="ddSalary" class="wrapper-dropdown-Salary" tabindex="1">
 						<span>Salary</span>
+						<!--Lets users select the choices -->
 						<ul class="dropdownSalary">
 							<li id="salary1"><a value="Negative_Nil_income_Total_Percentage"><i <?php echo ($salary == "Negative_Nil_income_Total_Percentage" ? "selected" : "") ;?> ></i>1</a></li>
 							<li id="salary2"><a value="Total_One_Two_Hundred"><i <?php echo ($salary == "Total_One_Two_Hundred" ? "selected" : "") ;?> ></i>2</a></li>
@@ -429,6 +432,7 @@
 				<div class="wrapper-Employment">
 					<div id="ddEmployment" class="wrapper-dropdown-Employment" tabindex="1">
 						<span>Employment</span>
+						<!--Lets users select the choices -->
 					    <ul class="dropdownEmployment" tabindex="1">
 					   <li id="Employment1"><a value="Employed_worked_Full_time_Total_Percentage"><i <?php echo ($employment == "Employed_worked_Full_time_Total_Percentage" ? "selected" : "") ;?> ></i>Full-Time</a></li>
 					   <li id="Employment2"><a value="Employed_worked_Part_time_Total_Percentage"><i <?php echo ($employment == "Employed_worked_Part_time_Total_Percentage" ? "selected" : "") ;?> ></i>Part-Time</a></li>
@@ -446,6 +450,7 @@
 				<div class="wrapper-Children">
 					<div id="ddChildren" class="wrapper-dropdown-Children" tabindex="1">
 						<span>Children</span>
+						<!--Lets users select the choices -->
 						<ul class="dropdownChildren">
 							<li id="child1"><a value="Total_Number_of_children_ever_born_No_children"><i <?php echo ($children == "Total_Number_of_children_ever_born_No_children" ? "selected" : "") ;?> ></i>0</a></li>
 							<li id="child2"><a value="Total_Number_of_children_ever_born_One_child"><i <?php echo ($children == "Total_Number_of_children_ever_born_One_child" ? "selected" : "") ;?> ></i>1</a></li>
@@ -470,6 +475,7 @@
 				<div class="wrapper-demo2">
 					<div id="dd2" class="wrapper-dropdown-Nat" tabindex="1">
 						<span>Nationality</span>
+						<!--Lets users select the choices -->
 						<ul class="dropdownNationality">
 							<li id="australia"><a value="Persons_Australia_Percentage"><i <?php echo ($nationality == "Persons_Australia_Percentage" ? "selected" : "") ;?> ></i>Australian</a></li>
 							<li id="china"><a value="Persons_China_excludes_SARs_and_Taiwan_Percentage"><i <?php echo ($nationality == "Persons_China_excludes_SARs_and_Taiwan_Percentage" ? "selected" : "") ;?> ></i>China</a></li>
