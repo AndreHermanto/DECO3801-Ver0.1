@@ -116,7 +116,6 @@
 		var children = "Total_Number_of_children_ever_born_No_children";
 	   
 	   <?php 
-				
 		if (isset($_GET['gender'])) 
 		{
 			$_SESSION['gender'] = $_GET['gender'];
@@ -142,9 +141,8 @@
 			$employment = $_SESSION['employment'];
 			$children = $_SESSION['children'];
 		}
-	
 		?>
-		var url;
+		
 		if(flag == "go")
 		{	//put the values from the session to javascript variables
 			gender = '<?=$gender;?>'; 
@@ -160,7 +158,7 @@
 
 		
 		}
-	url = "http://deco3801.host22.com/Test/index.php" + "?gender=" + gender + "&ageRange="+ age + "&nationality=" + nationality + "&education=" + education + "&language=" + language + "&religion=" + religion + "&salary=" + salary + "&employment=" + employment + "&children=" + children;
+	var url; = "http://deco3801.host22.com/index.php" + "?gender=" + gender + "&ageRange="+ age + "&nationality=" + nationality + "&education=" + education + "&language=" + language + "&religion=" + religion + "&salary=" + salary + "&employment=" + employment + "&children=" + children;
 	var fParam = document.getElementById("shareface");
 	fParam.setAttribute( "data-href", url );
 	twttr.ready(function (twttr) {
