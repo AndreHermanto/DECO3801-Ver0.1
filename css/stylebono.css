@@ -1,13 +1,15 @@
+/*Size of the logo*/
 .logo img {
 	width: 65%;
 	margin-left: 15%;
 	margin-bottom: 0.01px;
 }
 
+/* Placement of the logo on the top */
 .logo-main img {
 	height: 75px;
 	margin-left: 0.2%;
-	margin-top: 0.000000000001%;
+	margin-top: 0.01%;
 }
 
 .content {
@@ -15,6 +17,7 @@
 	height: 100%;
 }
 
+/* Controls for Enter Button */
 .button-enter {
 	font-family: arial;
 	position: relative;
@@ -30,6 +33,7 @@
 	-webkit-box-shadow: 0px 5px 0px rgba(7, 80, 76, 0.8);
 	-moz-box-shadow: 0px 5px 0px rgba(7, 80, 76, 0.8);
 	box-shadow: 0px 5px 0px rgba(7, 80, 76, 0.8);
+	
 }
 
 .button-enter:hover {
@@ -200,6 +204,7 @@ input[type="submit"]:active {
 }
 
 /*Placement of menu bars*/
+
 .wrapper-demo {
 	margin: 0 0 0 0;
 	font-weight: 400;
@@ -299,7 +304,13 @@ input[type="submit"]:active {
 	display: table;
 }
 
-/* Gender */
+.wrapper-Sharing {
+	margin: 25px 0 45px 0;
+	font-weight: 400;
+}
+
+
+/* Controls for Gender in the dropdown menu */
 
 .wrapper-dropdown-1 {
     /* Size and position */
@@ -397,6 +408,8 @@ input[type="submit"]:active {
 .no-pointerevents .wrapper-dropdown-1.active .dropdown {
 	display: block;
 }
+
+/* Controls for Age in the dropdown menu */
 
 .wrapper-dropdown-Age {
     /* Size and position */
@@ -502,7 +515,7 @@ input[type="submit"]:active {
 
 
 
-/*Education*/
+/* Controls for Education in the dropdown menu */
 
 
 .wrapper-dropdown-Edu {
@@ -605,7 +618,7 @@ input[type="submit"]:active {
 
 
 
-/*Nationality Style*/
+/* Controls for Nationality in the dropdown menu */
 
 .wrapper-dropdown-Nat {
     /* Size and position */
@@ -704,8 +717,8 @@ input[type="submit"]:active {
 	display: block;
 }
 
+/* Controls for Language in the dropdown menu */
 
-/* Language Start*/
 .wrapper-dropdown-Lang {
     /* Size and position */
 	position: absolute;
@@ -803,7 +816,8 @@ input[type="submit"]:active {
 	display: block;
 }
 
-/* Religion Start*/
+/* Controls for Religion in the dropdown menu */
+
 
 .wrapper-dropdown-Reli {
     /* Size and position */
@@ -902,7 +916,7 @@ input[type="submit"]:active {
 	display: block;
 }
 
-/* Salary Start*/
+/* Controls for Salary in the dropdown menu */
 
 .wrapper-dropdown-Salary {
     /* Size and position */
@@ -1000,9 +1014,24 @@ input[type="submit"]:active {
 .no-pointerevents .wrapper-dropdown-Salary.active .dropdownSalary {
 	display: block;
 }
+/* No CSS3 support */
 
+.no-opacity       .wrapper-dropdown-2 .dropdown1,
+.no-pointerevents .wrapper-dropdown-2 .dropdown1 {
+	display: none;
+	opacity: 1;
+ /* If opacity support but no pointer-events support */
+	pointer-events: auto;
+ /* If pointer-events support but no pointer-events support */
+}
 
-/* Employment Controlls*/
+.no-opacity       .wrapper-dropdown-2.active .dropdown1,
+.no-pointerevents .wrapper-dropdown-2.active .dropdown1 {
+	display: block;
+}
+
+/* Controls for Employment in the dropdown menu */
+
 
 .wrapper-dropdown-Employment {
     /* Size and position */
@@ -1101,8 +1130,8 @@ input[type="submit"]:active {
 	display: block;
 }
 
-/* Children controlls*/
 
+/* Controls for Children in the dropdown menu */
 .wrapper-dropdown-Children {
     /* Size and position */
 	position: absolute;
