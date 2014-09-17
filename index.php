@@ -9,24 +9,18 @@
 	
 	<!-- Page Width and Height -->
     <style type="text/css">
-      html { height: 100% }
+       html { height: 100% }
       body { height: 100%; margin: 0; padding: 0 }
       #map { height: 100% ; margin: top; padding: 0 }
     </style>
 	<!--Link to JQuery-->
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>
+	
 	<!--Link to CSS-->
 	<link type="text/css" rel="stylesheet" href="css/stylebono.css" />
 	<link href='http://fonts.googleapis.com/css?family=Overlock:400,900' rel='stylesheet' type='text/css'>
 	
-<!-- 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Karla%7CMontserrat">
-	<link rel="stylesheet" href="css/screen.css">
-	<link rel="stylesheet" href="css/lightbox.css">
-	
-	<script src="js/jquery-1.11.0.min.js"></script>
-	<script src="js/lightbox.js"></script> -->
-	  
 	<!--Google Map Api-->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAo3z4buaY-xjj9YXQexPl_DQLCv03XRFo&sensor=true"></script>
 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=drawing&sensor=true"></script>
@@ -116,6 +110,7 @@
 		var children = "Total_Number_of_children_ever_born_No_children";
 	   
 	   <?php 
+				
 		if (isset($_GET['gender'])) 
 		{
 			$_SESSION['gender'] = $_GET['gender'];
@@ -141,8 +136,9 @@
 			$employment = $_SESSION['employment'];
 			$children = $_SESSION['children'];
 		}
+	
 		?>
-		
+		var url;
 		if(flag == "go")
 		{	//put the values from the session to javascript variables
 			gender = '<?=$gender;?>'; 
@@ -158,7 +154,7 @@
 
 		
 		}
-	var url; = "http://deco3801.host22.com/index.php" + "?gender=" + gender + "&ageRange="+ age + "&nationality=" + nationality + "&education=" + education + "&language=" + language + "&religion=" + religion + "&salary=" + salary + "&employment=" + employment + "&children=" + children;
+	url = "http://deco3801.host22.com/index.php" + "?gender=" + gender + "&ageRange="+ age + "&nationality=" + nationality + "&education=" + education + "&language=" + language + "&religion=" + religion + "&salary=" + salary + "&employment=" + employment + "&children=" + children;
 	var fParam = document.getElementById("shareface");
 	fParam.setAttribute( "data-href", url );
 	twttr.ready(function (twttr) {
@@ -231,7 +227,11 @@
 			empty=false;
 		  }
 		  if(empty){
-		    alert("No Match Found"); 
+			$(document).ready(function(){
+				setTimeout(function() {
+					$.fn.colorbox({href:"images/V2.jpg", open:true});  
+				}, 1500);
+			});
 		  }
 	}})
 
@@ -257,7 +257,7 @@
       // instantiates the pie chart, passes in the data and
       // draws it.
       function drawChart() {
-
+710350425
         // Create the data table.
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Preference');
@@ -349,6 +349,10 @@
     				<h3>Match Criterias</h3>
     			</div>
     			<form action="setSession.php" method="post">
+					
+					
+<section class="main">
+				
 					
 					<!--This is the start of the dropdown menu as the first dropdownbar is the gender-->
 					<section class="main">
@@ -1223,7 +1227,10 @@
 			
 			
 		</script>
-
+	<!--Link to pop-up window-->
+	<link rel="stylesheet" href="css/colorbox.css" />
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery.colorbox-min.js"></script>
 
 
 
